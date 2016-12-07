@@ -1,6 +1,7 @@
 
 const container = require('./di.js');
 
+// requesting repository to container
 container.get(function(err, repository){
 
     console.log(err);
