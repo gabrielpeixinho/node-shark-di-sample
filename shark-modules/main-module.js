@@ -6,6 +6,7 @@ var main = new Module();
 // container will resolve parameters of factory methods using this bindings.
 
 main.bind('db', require('../components/db.js'));
+main.bind('config', require('../components/config-provider.js'));
 main.bind('repository', require('../components/repository.js'));
 
 exports = module.exports = main;
