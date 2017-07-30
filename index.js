@@ -1,14 +1,32 @@
+const container = require('shark-di').BootstrapContainer;
 
-const container = require('./di.js');
+// weapon factory
+function sword(){
+    return {name: 'sword', damage: 2.5};
+}
 
-// requesting repository to container
-//
-//
+// weapon factory 2
+function shuriken(){
+    return {name: 'shuriken',  damage: 1.0};
+}
 
-container.get(function(err, repository){
+// warrior constructor
+function ninja(weapon) {
+   this.weapon = weapon;
+   this.attack = function(){
+         console.log('attack using ' + this.weapon.name + ': ' + this.weapon.damage + ' damage');
+   } 
+}
 
-    console.log(err);
-    console.log(repository.get(0));
+container.bind('weapon', sword); //TODO: change to shuriken and see what happens.
+container.bindClass('warrior', ninja);
+
+container.get(function(err, warrior){
+
+    if(err)
+      console.log(err);
+    else
+      warrior.attack();
 
 });
 
